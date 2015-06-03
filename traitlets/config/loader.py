@@ -209,6 +209,8 @@ class Config(dict):
                 continue
             mine = self[section]
             theirs = other[section]
+            if isinstance(mine, int):
+                continue
             for key in mine:
                 if key in theirs and mine[key] != theirs[key]:
                     collisions.setdefault(section, {})
