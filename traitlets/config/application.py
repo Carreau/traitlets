@@ -347,8 +347,7 @@ class Application(SingletonConfigurable):
         self.print_options()
 
         if classes:
-            help_classes = self.classes
-            if help_classes:
+            if self.classes:
                 print("Class parameters")
                 print("----------------")
                 print()
@@ -356,9 +355,9 @@ class Application(SingletonConfigurable):
                     print(p)
                     print()
 
-            for cls in help_classes:
-                cls.class_print_help()
-                print()
+                for cls in self.classes:
+                    cls.class_print_help()
+                    print()
         else:
             print("To see all available configurables, use `--help-all`")
             print()
