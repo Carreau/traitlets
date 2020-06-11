@@ -778,7 +778,10 @@ class TestHasTraits(TestCase):
         self.assertTrue(a.trait_has_value('f'))
 
     def test_trait_metadata_deprecated(self):
-        with expected_warnings(['metadata should be set using the \.tag\(\) method']):
+        with expected_warnings(
+            ["metadata should be set using the \\.tag\\(\\) method"]
+        ):
+
             class A(HasTraits):
                 i = Int(config_key='MY_VALUE')
         a = A()
@@ -821,7 +824,10 @@ class TestHasTraits(TestCase):
         self.assertEqual(traits, dict(i=A.i, f=A.f, j=A.j))
 
     def test_traits_metadata_deprecated(self):
-        with expected_warnings(['metadata should be set using the \.tag\(\) method']*2):
+        with expected_warnings(
+            ["metadata should be set using the \\.tag\\(\\) method"] * 2
+        ):
+
             class A(HasTraits):
                 i = Int(config_key='VALUE1', other_thing='VALUE2')
                 f = Float(config_key='VALUE3', other_thing='VALUE2')

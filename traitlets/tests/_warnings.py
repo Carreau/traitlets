@@ -92,13 +92,13 @@ def expected_warnings(matching):
     If you pass multiple patterns, you get an orderless "and", where all of the
     warnings must be raised.
     If you use the "|" operator in a pattern, you can catch one of several warnings.
-    Finally, you can use "|\A\Z" in a pattern to signify it as optional.
+    Finally, you can use "|\\A\\Z" in a pattern to signify it as optional.
     """
     with all_warnings() as w:
         # enter context
         yield w
         # exited user context, check the recorded warnings
-        remaining = [m for m in matching if not '\A\Z' in m.split('|')]
+        remaining = [m for m in matching if not "\\A\\Z" in m.split("|")]
         for warn in w:
             found = False
             for match in matching:

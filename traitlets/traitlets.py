@@ -2754,13 +2754,21 @@ class Dict(Instance):
             if value_trait is not None:
                 raise TypeError("Found a value for both `value_trait` and its deprecated alias `trait`.")
             value_trait = trait
-            warn("Keyword `trait` is deprecated in traitlets 5.0, use `value_trait` instead", DeprecationWarning)
-        traits = kwargs.pop('traits', None)
+            warn(
+                "Keyword `trait` is deprecated in traitlets 5.0, use `value_trait` instead",
+                DeprecationWarning,
+                stacklevel=1,
+            )
+        traits = kwargs.pop("traits", None)
         if traits is not None:
             if per_key_traits is not None:
                 raise TypeError("Found a value for both `per_key_traits` and its deprecated alias `traits`.")
             per_key_traits = traits
-            warn("Keyword `traits` is deprecated in traitlets 5.0, use `per_key_traits` instead", DeprecationWarning)
+            warn(
+                "Keyword `traits` is deprecated in traitlets 5.0, use `per_key_traits` instead",
+                DeprecationWarning,
+                stacklevel=1,
+            )
 
         # Handling positional arguments
         if default_value is Undefined and value_trait is not None:
