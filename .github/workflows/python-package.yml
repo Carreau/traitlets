@@ -19,6 +19,7 @@ jobs:
         fetch-depth: 200
     - run: |
         git fetch --no-tags --prune --depth=1 origin +refs/heads/master:refs/remotes/origin/master
+        git log --oneline |wc -l
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
