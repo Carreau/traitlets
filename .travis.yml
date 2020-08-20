@@ -10,11 +10,12 @@ install:
   - pip install pep517
   - python -m pep517.build .
   - pip install dist/traitlets*.whl
-  - pip install --pre --upgrade traitlets[test] pytest pytest-cov codecov
+  - pip install --pre --upgrade traitlets[test] pytest pytest-cov codecov darker
   - test -z ${TEST_DEPS} || pip install --upgrade ${TEST_DEPS}
   - pip freeze
 script:
   - ${TEST:-py.test --cov traitlets -v traitlets}
+  - darker --check -r 61c7c8f5030d116de210f67d851ec9afa9f16170 .
 after_success:
   - codecov
 jobs:
