@@ -18,14 +18,13 @@ def get_logger() -> logging.Logger | logging.LoggerAdapter[Any]:
     """
     global _logger  # noqa: PLW0603
 
-    if _logger is None:
-        from .config import Application
+    from .config import Application
 
-        if Application.initialized():
-            _logger = Application.instance().log
-        else:
-            _logger = logging.getLogger("traitlets")
-            # Add a NullHandler to silence warnings about not being
-            # initialized, per best practice for libraries.
-            _logger.addHandler(logging.NullHandler())
+    if Application.initialized():
+        return Application.instance().log
+    if _logger is None:
+        _logger = logging.getLogger("traitlets")
+        # Add a NullHandler to silence warnings about not being
+        # initialized, per best practice for libraries.
+        _logger.addHandler(logging.NullHandler())
     return _logger
